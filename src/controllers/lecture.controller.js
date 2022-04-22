@@ -28,8 +28,8 @@ router.get("/", async (req, res) => {
 //
 router.get("/:id", async (req, res) => {
     try {
-        console.log("inside")
-        let lecture = await Lecture.find({ batch_id: req.params.id }).lean().exec();
+        // console.log("inside")
+        let lecture = await Lecture.find({ batch_id: req.params.id }).populate({ path: "batch_id" }).lean().exec();
         return res.status(200).send(lecture)
     } catch (error) {
         return res.status(500).send({ error: error.message })
