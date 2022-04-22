@@ -11,6 +11,15 @@ const userSchema = new mongoose.Schema(
         DOB: { type: Date },
         Gender: { type: String },
         password: { type: String, required: true },
+        userType: {
+            type: String,
+            enum: ['user', 'admin'],
+            default: 'user'
+        },
+        batch_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "batch"
+        }
     },
     {
         versionKey: false,
