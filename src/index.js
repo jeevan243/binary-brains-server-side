@@ -4,6 +4,7 @@ const cors = require('cors')
 const { getUsers, register, login } = require("./controllers/auth.controller");
 
 const batchController = require("./controllers/batch.controller");
+const lectureController=require("./controllers/lecture.controller")
 
 const port = process.env.PORT || 5000
 
@@ -19,6 +20,7 @@ app.get("/userdata", getUsers)
 app.post("/login", login);
 
 app.use("/batch", batchController);
+app.use("/lecture",lectureController);
 
 
 app.listen(port, async (req, res) => {
