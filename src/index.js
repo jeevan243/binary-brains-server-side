@@ -16,7 +16,6 @@ app.get("/userdata", getUsers)
 app.post("/login", login);
 
 
-
 app.listen(port, async (req, res) => {
     try {
         await connect();
