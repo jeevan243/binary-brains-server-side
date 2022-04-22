@@ -9,7 +9,7 @@ const lectureController = require("./controllers/lecture.controller")
 const assignmentController = require("./controllers/assignment.controller")
 
 const port = process.env.PORT || 5000
-
+/////
 const app = express();
 app.use(cors())
 
