@@ -23,5 +23,26 @@ router.get("/", async (req, res) => {
     }
 })
 
+//get assignments by batch
+router.get("/:id", async (req, res) => {
+    try {
+        let assignments = await Assignment.find({batch_id:req.params.id}).lean().exec();
+        return res.status(200).send(assignments)
+    } catch (error) {
+        return res.status(500).send({ error: error.message })
+    }
+})
+router.patch("/:assignment_id", async (req, res) => {
+    try {
+        let assignments = await Assignment.findById(req.params.assignment_id).lean().exec();
+        assignments.students.push(req.body.user_id)
+       await Assignment.findByIdAndUpdate(req.params.assignment_id,assignments);
+        let allassignments = await Assignment.find({batch_id:assignments.batch_id}).lean().exec();
+        // console.log(allassignments)
+        return res.status(200).send(allassignments);
+    } catch (error) {
+        return res.status(500).send({ error: error.message })
+    }
+})
 
 module.exports = router
