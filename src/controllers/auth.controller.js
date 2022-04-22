@@ -8,6 +8,8 @@ const newToken = (user) => {
     // console.log(process.env)
     return jwt.sign({ user }, process.env.JWT_SECRET_KEY)
 }
+
+//getData
 const getUsers = async (req, res) => {
     try {
 
