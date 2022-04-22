@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
+
         let batches = await Batch.find().lean().exec();
         return res.status(200).send(batches)
     } catch (error) {
