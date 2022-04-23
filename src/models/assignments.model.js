@@ -8,6 +8,7 @@ const assignmentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
     }],
+    type:{type:String,required:true},
     creater: { type: String, required: true },
     created_date: { type: Date, required: true },
     dead_line: { type: Date, required: true },
