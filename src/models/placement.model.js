@@ -7,7 +7,12 @@ const placementSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
     }],
-})
+}
+    ,
+    {
+        timestamps: true,
+        versionKey: false
+    })
 
 const Placements = mongoose.model("placement", placementSchema)
 
