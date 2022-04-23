@@ -26,8 +26,12 @@ router.get("/", async (req, res) => {
 //get assignments by batch
 router.get("/:id", async (req, res) => {
     try {
-        let assignments = await Assignment.find({batch_id:req.params.id}).lean().exec();
-        return res.status(200).send(assignments)
+        let page=req.query.page||1;
+        let limit=req.query.limit||5;
+        let offset=(page-1)*limit;
+        let pages=await Assignment.find({ batch_id: req.params.id }).countDocuments();
+        let assignments = await Assignment.find({batch_id:req.params.id}).skip(offset).limit(limit).lean().exec();
+        return res.status(200).send({assignments,pages})
     } catch (error) {
         return res.status(500).send({ error: error.message })
     }
