@@ -8,6 +8,10 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     try {
+        if(req.body.batch_name){
+            let x=await Batch.findOne({batch_name:req.body.batch_name}).lean().exec()
+            req.body.batch_id=x._id;
+        }
         let lecture = await Lecture.create(req.body);
         return res.status(201).send(lecture)
     } catch (error) {
