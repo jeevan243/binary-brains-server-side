@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        let placements = await Placements.find().lean().exec();
+        let placements = await Placements.find().populate({ path: "students" }).lean().exec();
         return res.status(200).send(placements)
     } catch (error) {
         return res.status(500).send({ error: error.message })
