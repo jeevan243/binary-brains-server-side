@@ -19,6 +19,14 @@ app.use("/lecture", lectureController);
 app.use("/assignment", assignmentController);
 app.use("/placement", placementsController);
 
+app.get("/", async (req, res) => {
+    try {
+        return res.send("Server is live now")
+    } catch (error) {
+        return res.send(error.message)
+    }
+})
+
 //register
 app.post("/register", register);
 app.get("/userdata", getUsers)
